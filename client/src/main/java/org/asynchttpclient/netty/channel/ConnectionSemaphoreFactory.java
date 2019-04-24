@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 AsyncHttpClient Project. All rights reserved.
+ * Copyright (c) 2018 AsyncHttpClient Project. All rights reserved.
  *
  * This program is licensed to you under the Apache License Version 2.0,
  * and you may not use this file except in compliance with the Apache License Version 2.0.
@@ -13,13 +13,10 @@
  */
 package org.asynchttpclient.netty.channel;
 
-/**
- * Non-blocking semaphore API.
- *
- * @author Stepan Koltsov
- */
-interface NonBlockingSemaphoreLike {
-    void release();
+import org.asynchttpclient.AsyncHttpClientConfig;
 
-    boolean tryAcquire();
+public interface ConnectionSemaphoreFactory {
+
+    ConnectionSemaphore newConnectionSemaphore(AsyncHttpClientConfig config);
+
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 AsyncHttpClient Project. All rights reserved.
+ * Copyright (c) 2018 AsyncHttpClient Project. All rights reserved.
  *
  * This program is licensed to you under the Apache License Version 2.0,
  * and you may not use this file except in compliance with the Apache License Version 2.0.
@@ -13,27 +13,18 @@
  */
 package org.asynchttpclient.netty.channel;
 
+import java.io.IOException;
+
 /**
- * Non-blocking semaphore-like object with infinite permits.
- *
- * So try-acquire always succeeds.
- *
- * @author Stepan Koltsov
+ * No-op implementation of {@link ConnectionSemaphore}.
  */
-enum NonBlockingSemaphoreInfinite implements NonBlockingSemaphoreLike {
-    INSTANCE;
+public class NoopConnectionSemaphore implements ConnectionSemaphore {
 
-    @Override
-    public void release() {
-    }
+  @Override
+  public void acquireChannelLock(Object partitionKey) throws IOException {
+  }
 
-    @Override
-    public boolean tryAcquire() {
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return NonBlockingSemaphore.class.getName();
-    }
+  @Override
+  public void releaseChannelLock(Object partitionKey) {
+  }
 }
